@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= data.name %> - Portfolio</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <h2><%= data.name %></h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <!-- Profile Picture -->
+                    <% if (data.profileImage) { %>
+                        <div class="profile-image-container">
+                            <img src="<%= data.profileImage %>" alt="<%= data.name %>" class="profile-image">
+                            <div class="profile-badge">Available for Work</div>
+                        </div>
+                    <% } %>
+                    
+                    <div class="hero-text">
+                        <div class="name-title">
+                            <h1 class="gradient-text"><%= data.name %></h1>
+                            <h2><%= data.title %></h2>
+                        </div>
+                        
+                        <div class="profile-stats">
+                            <div class="stat">
+                                <span class="stat-number">10,000+</span>
+                                <span class="stat-label">Images Annotated</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">99%</span>
+                                <span class="stat-label">Accuracy</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">6+</span>
+                                <span class="stat-label">Month Experience</span>
+                            </div>
+                        </div>
+                        
+                        <p class="hero-description"><%= data.profile %></p>
+                        
+                        <div class="hero-links">
+                            <a href="<%= data.links.github %>" class="btn btn-github" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="<%= data.links.linkedin %>" class="btn btn-linkedin" target="_blank">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                            <a href="mailto:<%= data.links.email %>" class="btn btn-email">
+                                <i class="fas fa-envelope"></i> Hire Me
+                            </a>
+                            <% if (data.links.resume) { %>
+                                <a href="<%= data.links.resume %>" class="btn btn-resume" download>
+                                    <i class="fas fa-download"></i> Download Resume
+                                </a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-main">
+                        <div class="about-text">
+                            <div class="intro-highlight">
+                                <h3>From Data Precision to <span class="highlight">Code Excellence</span></h3>
+                                <p>With a strong foundation in <strong>Data Annotation</strong> and <strong>AI/ML training data preparation</strong>, 
+                                I bring exceptional attention to detail and quality-focused approach to <strong>Backend Web Development</strong>. 
+                                My experience in handling complex datasets has equipped me with the analytical mindset needed for building 
+                                robust and scalable server-side applications.</p>
+                            </div>
+                            
+                            <div class="journey-section">
+                                <h4>🚀 My Journey</h4>
+                                <p>Transitioning from ensuring <strong>99% accuracy in 10,000+ image annotations</strong> to writing clean, 
+                                efficient backend code. I understand that both require the same level of precision, structure, and 
+                                quality assurance that I've mastered in my data annotation career.</p>
+                            </div>
+                            
+                            <div class="skills-highlight">
+                                <h4>💡 What I Bring</h4>
+                                <ul>
+                                    <li><strong>Precision & Quality:</strong> 99% accuracy mindset from data annotation</li>
+                                    <li><strong>Problem Solving:</strong> Experience in complex data structure handling</li>
+                                    <li><strong>Team Collaboration:</strong> Worked with cross-functional teams on AI projects</li>
+                                    <li><strong>Adaptability:</strong> Quick learner transitioning to backend technologies</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="education-section">
+                            <h3>🎓 Education</h3>
+                            <div class="education-cards">
+                                <% data.education.forEach(edu => { %>
+                                    <div class="education-card">
+                                        <div class="card-icon">📚</div>
+                                        <h4><%= edu.degree %></h4>
+                                        <p class="institution"><%= edu.institution %></p>
+                                        <p class="score"><%= edu.score %></p>
+                                        <div class="card-border"></div>
+                                    </div>
+                                <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience">
+            <div class="container">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="timeline">
+                    <% data.experience.forEach(exp => { %>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3><%= exp.role %></h3>
+                                <h4><%= exp.company %></h4>
+                                <ul>
+                                    <% exp.achievements.forEach(achievement => { %>
+                                        <li><%= achievement %></li>
+                                    <% }); %>
+                                </ul>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Backend Development</h3>
+                        <div class="skill-items">
+                            <% data.skills.backend.forEach(skill => { %>
+                                <span class="skill-tag"><%= skill %></span>
+                            <% }); %>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Databases</h3>
+                        <div class="skill-items">
+                            <% data.skills.databases.forEach(skill => { %>
+                                <span class="skill-tag"><%= skill %></span>
+                            <% }); %>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & Technologies</h3>
+                        <div class="skill-items">
+                            <% data.skills.tools.forEach(skill => { %>
+                                <span class="skill-tag"><%= skill %></span>
+                            <% }); %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">My Projects</h2>
+                <div class="projects-grid">
+                    <% data.projects.forEach(project => { %>
+                        <div class="project-card">
+                            <div class="project-icon">🚀</div>
+                            <h3><%= project.title %></h3>
+                            <p class="project-description"><%= project.description %></p>
+                            <div class="project-technologies">
+                                <% project.technologies.forEach(tech => { %>
+                                    <span class="tech-tag"><%= tech %></span>
+                                <% }); %>
+                            </div>
+                            <div class="project-links">
+                                <a href="<%= project.githubLink %>" class="btn btn-github" target="_blank">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <% if (project.liveLink && project.liveLink !== '#') { %>
+                                    <a href="<%= project.liveLink %>" class="btn btn-demo" target="_blank">
+                                        <i class="fas fa-external-link-alt"></i> Live Demo
+                                    </a>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span><%= data.email %></span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span><%= data.phone %></span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span><%= data.location %></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="contact-form-container">
+                        <h3>Send me a message</h3>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" name="name" placeholder="Your Name" required class="form-input">
+                                    <i class="fas fa-user form-icon"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" placeholder="Your Email" required class="form-input">
+                                    <i class="fas fa-envelope form-icon"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="subject" placeholder="Subject" required class="form-input">
+                                <i class="fas fa-tag form-icon"></i>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" placeholder="Your Message..." required class="form-textarea" rows="5"></textarea>
+                                <i class="fas fa-comment form-icon"></i>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
+                            </button>
+                        </form>
+                        <div id="formMessage" class="form-message"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 <%= data.name %>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
